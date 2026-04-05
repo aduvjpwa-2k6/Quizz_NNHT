@@ -418,8 +418,12 @@
         border-color: #475569;
         color: #f8fafc;
       }
-      body.dark-mode .nav-btn:hover {
+      body.dark-mode .nav-btn:hover:not(:disabled) {
         background: #475569;
+      }
+      body.dark-mode .nav-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
       }
       body.dark-mode .q-num {
         background: #334155;
@@ -485,8 +489,8 @@
         <div class="mock-badge">Thi thử</div>
         <h1>Ôn tập Ngôn ngữ hình thức</h1>
         <div class="info-row">
-          <div class="info-item">📄 25 câu/lần</div>
-          <div class="info-item">⏱️ 20 phút</div>
+          <div class="info-item" id="infoQuestions">📄 Tất cả câu hỏi</div>
+          <div class="info-item" id="infoTime">⏱️ 50 phút</div>
           <div class="info-item">🎯 Tự động chấm</div>
         </div>
         <div style="margin: 20px 0">
@@ -496,6 +500,7 @@
           <select
             id="questionSetSelect"
             style="padding: 10px 16px; border-radius: 20px; margin-left: 10px"
+            onchange="updateInfo()"
           >
             <option value="0">Tất cả câu hỏi</option>
             <option value="1">Bộ 1 (Câu 1 - 25)</option>
@@ -503,6 +508,18 @@
             <option value="3">Bộ 3 (Câu 51 - Hết)</option>
           </select>
         </div>
+        <script>
+          function updateInfo() {
+            const selectVal = document.getElementById("questionSetSelect").value;
+            if (selectVal === "0") {
+              document.getElementById("infoQuestions").innerText = "📄 Tất cả câu hỏi";
+              document.getElementById("infoTime").innerText = "⏱️ 50 phút";
+            } else {
+              document.getElementById("infoQuestions").innerText = "📄 25 câu/lần";
+              document.getElementById("infoTime").innerText = "⏱️ 20 phút";
+            }
+          }
+        </script>
         <button class="start-btn" id="startExamBtn">Bắt đầu làm bài →</button>
       </div>
       <div id="history-summaryTab" class="tab-content">
@@ -1349,7 +1366,7 @@
         examStartTime,
         timerInterval,
         isExamFinished = false;
-      const TOTAL_TIME = 20 * 60; // 20 phút
+      let TOTAL_TIME = 20 * 60; // default 20 phút
       const homePage = document.getElementById("homePage"),
         examPage = document.getElementById("examPage");
       const startExamBtn = document.getElementById("startExamBtn"),
@@ -1376,6 +1393,11 @@
 
       function startExam() {
         currentQuestions = getQuestionSet();
+        if (document.getElementById("questionSetSelect").value === "0") {
+          TOTAL_TIME = 50 * 60; // 50 phút
+        } else {
+          TOTAL_TIME = 20 * 60; // 20 phút
+        }
         userAnswers = new Array(currentQuestions.length).fill(null);
         currentQuestionIndex = 0;
         isExamFinished = false;
