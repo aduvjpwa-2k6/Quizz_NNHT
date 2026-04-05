@@ -1,0 +1,1934 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Ôn tập Lý thuyết Ngôn ngữ & Ôtômat | Trắc nghiệm</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", "Inter", system-ui, sans-serif;
+        background: #f0f2f8;
+        color: #1e293b;
+        font-size: 14px;
+      }
+      .home-container {
+        max-width: 600px;
+        margin: 80px auto;
+        text-align: center;
+        background: white;
+        border-radius: 32px;
+        padding: 48px 32px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+      }
+      .home-container h1 {
+        font-size: 2rem;
+        color: #0f2b3d;
+        margin-bottom: 8px;
+      }
+      .mock-badge {
+        background: #eef2ff;
+        display: inline-block;
+        color: black;
+        padding: 6px 18px;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+      }
+      .info-row {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin: 20px 0;
+      }
+      .info-item {
+        background: #f8fafc;
+        color: black;
+        padding: 8px 16px;
+        border-radius: 40px;
+      }
+      .start-btn {
+        background: #1a4a6f;
+        color: white;
+        border: none;
+        padding: 12px 32px;
+        border-radius: 60px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .start-btn:hover {
+        background: #0f3550;
+      }
+      .history-summary {
+        margin-top: 40px;
+        text-align: left;
+      }
+      .history-summary h2 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+      }
+      .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      .history-table th,
+      .history-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #eef2f8;
+      }
+      .history-table th {
+        background-color: #f8fafc;
+        font-weight: 600;
+        color: #475569;
+      }
+      .history-table tbody tr:hover {
+        background-color: #f1f5f9;
+      }
+      .history-table tbody tr:hover {
+        background-color: #334155;
+      }
+      .history-table .review-link {
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .history-table .review-link:hover {
+        text-decoration: underline;
+      }
+      .exam-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .main-content {
+        flex: 2;
+        min-width: 280px;
+      }
+      .sidebar {
+        flex: 1;
+        min-width: 260px;
+        background: white;
+        border-radius: 20px;
+        padding: 16px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        height: fit-content;
+        position: sticky;
+        top: 16px;
+        max-height: calc(100vh - 32px);
+        display: flex;
+        flex-direction: column;
+      }
+      .hero {
+        background: linear-gradient(135deg, #0f2b3d 0%, #1a4a6f 100%);
+        border-radius: 20px;
+        padding: 14px 20px;
+        margin-bottom: 20px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        cursor: pointer;
+      }
+      .hero h1 {
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+      .timer {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 12px;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+      .result-panel {
+        background: white;
+        border-radius: 20px;
+        padding: 16px 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border-left: 5px solid #22c55e;
+        display: none;
+      }
+      .result-panel table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.85rem;
+      }
+      .result-panel td {
+        padding: 6px 8px;
+        border-bottom: 1px solid #eef2f8;
+      }
+      .result-panel td:first-child {
+        font-weight: 600;
+        width: 140px;
+        color: #475569;
+      }
+      .question-card {
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 16px;
+      }
+      .question-text {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #eef2f8;
+        white-space: pre-wrap;
+      }
+      .options-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .option-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 40px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.85rem;
+      }
+      .option-item.selected {
+        background: #e6f7ff;
+        border-color: #1a4a6f;
+      }
+      .option-item.correct-after {
+        background: #dcfce7;
+        border-color: #22c55e;
+      }
+      .option-item.wrong-after {
+        background: #fee2e2;
+        border-color: #ef4444;
+      }
+      .option-prefix {
+        font-weight: 700;
+        width: 28px;
+      }
+      .-area {
+        margin-top: 12px;
+        padding: 10px 16px;
+        border-radius: 16px;
+        font-size: 0.8rem;
+        display: none;
+      }
+      .-area.show {
+        display: block;
+      }
+      .-correct {
+        background: #dcfce7;
+        color: #166534;
+        border-left: 3px solid #22c55e;
+      }
+      .-wrong {
+        background: #fee2e2;
+        color: #991b1b;
+        border-left: 3px solid #ef4444;
+      }
+      .nav-bar-bottom {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 12px;
+        gap: 10px;
+      }
+      .nav-buttons {
+        display: flex;
+        gap: 12px;
+      }
+      .nav-btn {
+        background: white;
+        border: 1px solid #e2e8f0;
+        padding: 8px 20px;
+        border-radius: 40px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+      .question-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        max-height: 460px;
+        overflow-y: auto;
+        padding-right: 4px;
+        margin-bottom: 16px;
+      }
+      .q-num {
+        background: #f1f5f9;
+        border-radius: 10px;
+        padding: 8px 0;
+        text-align: center;
+        font-weight: 600;
+        font-size: 0.75rem;
+        cursor: pointer;
+      }
+      .q-num.selected {
+        background: #bfdbfe;
+        border: 1px solid #1a4a6f;
+      }
+      .q-num.correct {
+        background: #22c55e;
+        color: white;
+      }
+      .q-num.wrong {
+        background: #ef4444;
+        color: white;
+      }
+      .q-num.current {
+        border: 2px solid #1a4a6f;
+        background: #e6f7ff;
+      }
+      .submit-btn {
+        width: 100%;
+        background: #1a4a6f;
+        color: white;
+        padding: 10px;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        border: none;
+        cursor: pointer;
+        margin-top: 8px;
+      }
+      .tabs {
+        display: flex;
+        gap: 8px;
+        margin: 12px 0 8px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .tab-btn {
+        background: none;
+        border: none;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        color: #64748b;
+      }
+      .tab-btn.active {
+        color: #1a4a6f;
+        border-bottom: 2px solid #1a4a6f;
+      }
+      .tab-content {
+        display: none;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 8px;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .history-item {
+        background: #f8fafc;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      .theme-switch {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #1a4a6f;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1000;
+        font-size: 1.2rem;
+      }
+      body.dark-mode {
+        background: #0f172a;
+        color: #f1f5f9;
+      }
+      body.dark-mode .home-container,
+      body.dark-mode .sidebar,
+      body.dark-mode .result-panel,
+      body.dark-mode .question-card {
+        background: #1e293b;
+        color: #f1f5f9;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      }
+      body.dark-mode .history-table th {
+        background: #334155;
+        color: #cbd5e1;
+      }
+      body.dark-mode .history-table tbody tr:hover {
+        background-color: #1b234a;
+      }
+      body.dark-mode .history-table td {
+        border-bottom: 1px solid #334155;
+      }
+      body.dark-mode .home-container h1,
+      body.dark-mode .result-panel td:first-child {
+        color: #f8fafc;
+      }
+      body.dark-mode .mock-badge,
+      body.dark-mode .info-item {
+        background: #334155;
+        color: #e2e8f0;
+      }
+      body.dark-mode .option-item {
+        background: #334155;
+        border-color: #475569;
+        color: #f1f5f9;
+      }
+      body.dark-mode .option-item:hover {
+        background: #475569;
+      }
+      body.dark-mode .option-item.selected {
+        background: #1e3a8a;
+        border-color: #3b82f6;
+      }
+      body.dark-mode .option-item.correct-after {
+        background: #166534;
+        border-color: #22c55e;
+      }
+      body.dark-mode .option-item.wrong-after {
+        background: #991b1b;
+        border-color: #ef4444;
+      }
+      body.dark-mode .nav-btn {
+        background: #334155;
+        border-color: #475569;
+        color: #f8fafc;
+      }
+      body.dark-mode .nav-btn:hover {
+        background: #475569;
+      }
+      body.dark-mode .q-num {
+        background: #334155;
+        color: #f1f5f9;
+      }
+      body.dark-mode .q-num.selected {
+        background: #2563eb;
+        border-color: #60a5fa;
+      }
+      body.dark-mode .q-num.correct {
+        background: #22c55e;
+      }
+      body.dark-mode .q-num.wrong {
+        background: #ef4444;
+      }
+      body.dark-mode .q-num.current {
+        border-color: #60a5fa;
+        background: #1e3a8a;
+      }
+      body.dark-mode .question-text,
+      body.dark-mode .wrong-item {
+        border-bottom-color: #475569;
+      }
+      body.dark-mode .history-item {
+        background: #334155;
+      }
+      body.dark-mode .history-item:hover {
+        background: #475569;
+      }
+      body.dark-mode .history-item .score {
+        color: #60a5fa;
+      }
+      body.dark-mode .wrong-item a {
+        color: #60a5fa;
+      }
+
+      body.dark-mode .tab-btn.active {
+        color: #93c5fd;
+        border-bottom-color: #93c5fd;
+      }
+      body.dark-mode .tabs {
+        border-bottom-color: #475569;
+      }
+      @media (max-width: 850px) {
+        .exam-container {
+          flex-direction: column;
+        }
+        .sidebar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="theme-switch" id="themeSwitch">🌙</button>
+
+    <div id="homePage" class="home-container">
+      <div class="tabs" style="justify-content: center; margin-bottom: 24px">
+        <button class="tab-btn active" data-tab="new-exam">Thi mới</button>
+        <button class="tab-btn" data-tab="history-summary">Lịch sử</button>
+      </div>
+      <div id="new-examTab" class="tab-content active">
+        <div class="mock-badge">Thi thử</div>
+        <h1>Ôn tập Ngôn ngữ hình thức</h1>
+        <div class="info-row">
+          <div class="info-item">📄 25 câu/lần</div>
+          <div class="info-item">⏱️ 20 phút</div>
+          <div class="info-item">🎯 Tự động chấm</div>
+        </div>
+        <div style="margin: 20px 0">
+          <label for="questionSetSelect" style="font-weight: 600"
+            >Chọn bộ đề:</label
+          >
+          <select
+            id="questionSetSelect"
+            style="padding: 10px 16px; border-radius: 20px; margin-left: 10px"
+          >
+            <option value="0">Tất cả câu hỏi</option>
+            <option value="1">Bộ 1 (Câu 1 - 25)</option>
+            <option value="2">Bộ 2 (Câu 26 - 50)</option>
+            <option value="3">Bộ 3 (Câu 51 - Hết)</option>
+          </select>
+        </div>
+        <button class="start-btn" id="startExamBtn">Bắt đầu làm bài →</button>
+      </div>
+      <div id="history-summaryTab" class="tab-content">
+        <div class="history-summary">
+          <h2>📋 Lịch sử thi</h2>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Lần</th>
+                <th>Trạng thái</th>
+                <th>Điểm /100</th>
+                <th>Xem lại</th>
+              </tr>
+            </thead>
+            <tbody id="historySummaryBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="examPage" style="display: none">
+      <div class="exam-container">
+        <div class="main-content">
+          <div class="hero" id="backToHomeBtn">
+            <div>
+              <h1>📘 ÔN TẬP & KIỂM TRA</h1>
+              <p>Hệ thống Ôn tập & Thi thử • Ngôn ngữ hình thức</p>
+            </div>
+            <div class="timer" id="timerDisplay">20:00</div>
+          </div>
+          <div id="resultPanel" class="result-panel">
+            <table>
+              <tr>
+                <td>Bắt đầu</td>
+                <td id="startTimeStr">-</td>
+              </tr>
+              <tr>
+                <td>Kết thúc</td>
+                <td id="endTimeStr">-</td>
+              </tr>
+              <tr>
+                <td>Thời gian</td>
+                <td id="durationStr">-</td>
+              </tr>
+              <tr>
+                <td>Điểm</td>
+                <td id="scoreDetail">-</td>
+              </tr>
+              <tr>
+                <td>Điểm %</td>
+                <td id="scorePercent">-</td>
+              </tr>
+            </table>
+          </div>
+          <div class="question-card">
+            <div class="question-text" id="questionText">Đang tải...</div>
+            <div class="options-list" id="optionsContainer"></div>
+            <div class="-area" id="Area"></div>
+            <div class="nav-bar-bottom">
+              <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn">◀ Trước</button
+                ><button class="nav-btn" id="nextBtn">Sau ▶</button
+                ><button
+                  class="nav-btn"
+                  id="submitBtnBottom"
+                  style="display: none; background: #1a4a6f; color: white"
+                >
+                  📥 Nộp bài
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 8px;
+            "
+          >
+            <strong>📋 DANH SÁCH CÂU</strong
+            ><span
+              id="answeredCounter"
+              style="
+                background: #eef2ff;
+                color: black;
+                padding: 2px 8px;
+                border-radius: 20px;
+              "
+              >0/0</span
+            >
+          </div>
+          <div id="questionGrid" class="question-grid"></div>
+          <button class="submit-btn" id="submitExamBtn">📥 NỘP BÀI</button>
+          <button
+            class="nav-btn"
+            id="goToHomeBtn"
+            style="width: 100%; margin-top: 12px"
+          >
+            Về trang chủ
+          </button>
+          <button
+            class="nav-btn"
+            id="goToHistoryBtn"
+            style="width: 100%; margin-top: 8px"
+          >
+            Lịch sử thi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ---------- BỘ CÂU HỎI THEO TÀI LIỆU TNNNHT.docx (Chương 1 & 2) ----------
+      const QUESTION_BANK = [
+        {
+          text: "Những xâu nào được thừa nhận bởi Otomat sau? (Chọn 2)",
+          image: "ẢnhNNHT/image001.png",
+          options: ["110", "1100", "1101"],
+          correct: [0, 2],
+        },
+        {
+          text: "Để tìm một BTCQ tương đương với một Otomat cho trước, tên các trạng thái phải đặt như thế nào?",
+          options: [
+            "Theo thứ tự q1, q2 ... qn (q1 là trạng thái đầu)",
+            "Theo thứ tự q0, q1 ... qn (q0 là trạng thái đầu)",
+            "Theo thứ tự alphabe: a, b, c ...",
+            "Không có quy ước đặt tên trạng thái",
+          ],
+          correct: 0,
+          explanation:
+            "Khi xây dựng biểu thức chính quy từ otomat, cần đặt tên trạng thái theo thứ tự q1, q2, ..., qn với q1 là trạng thái đầu để áp dụng công thức Kleene.",
+        },
+        {
+          text: "Hai văn phạm được gọi là tương đương nếu",
+          options: [
+            "Thuộc cùng một lớp văn phạm",
+            "Có cùng bộ chữ kết thúc",
+            "Sản sinh ra cùng một ngôn ngữ",
+          ],
+          correct: 2,
+          explanation:
+            "Hai văn phạm tương đương khi chúng sinh ra cùng một ngôn ngữ.",
+        },
+        {
+          text: "Cho Otomat có sơ đồ dịch chuyển như hình. E(q2) = ?",
+          image: "ẢnhNNHT/image001.png",
+          options: ["{q₁, q₃}", "{q₂, q₁}", "{q₂, q₁, q₀}", "{q₂, q₁, q₃}"],
+          correct: 3,
+        },
+        {
+          text: "Cho Otomat có sơ đồ dịch chuyển như hình. E(q0)=?",
+          image: "ẢnhNNHT/image002.png",
+          options: ["{q₀}", "{q₀, q₁}", "{q₁, q₃}"],
+          correct: 1,
+        },
+        {
+          text: "Một xâu được đoán nhận bởi ô tô mát hữu hạn tiền định nếu",
+          options: [
+            "Ô tô mát đọc hết xâu và trạng thái thu được là trạng thái kết thúc",
+            "Ô tô mát đọc hết xâu và trạng thái thu được là trạng thái bắt đầu",
+            "Ô tô mát đọc hết xâu",
+            "Ô tô mát dừng lại và thu được trạng thái thừa nhận",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Otomat được cho bởi hình bên tương đương với BTCQ nào?",
+          image: "ẢnhNNHT/image007.png",
+          options: ["0+1", "(0+1)*", "0.1", "1*"],
+          correct: 3,
+          explanation:
+            "Hình vẽ cho thấy otomat chỉ có vòng lặp trên ký hiệu 1, tương đương với biểu thức chính quy 1*.",
+        },
+        {
+          text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
+          image: "ẢnhNNHT/image008.png",
+          options: [
+            "{aⁿ cᵐ bⁿ | n ≥ 0, m ≥ 1}",
+            "{aⁿ bⁿ cᵐ | n ≥ 0, m ≥ 1}",
+            "{aⁿ cᵐ⁺¹ bⁿ | n ≥ 0, m ≥ 1}",
+            "{aⁿ bᵐ cⁿ | n ≥ 1, m ≥ 1}",
+          ],
+          correct: 0,
+          explanation:
+            "S sinh ra aⁿ S bⁿ, cuối cùng S → Ac, A sinh ra cᵐ (m≥0), tổng cộng có aⁿ cᵐ⁺¹ bⁿ nhưng nếu đặt lại m' = m+1 thì m'≥1, dạng aⁿ cᵐ bⁿ với m≥1.",
+        },
+        {
+          text: "BTCQ A+B chỉ định ngôn ngữ nào?",
+          options: ["L(A) ∪ L(B)", "L(A).L(B)", "L(A) + L(B)"],
+          correct: 0,
+          explanation:
+            "Phép + trong biểu thức chính quy biểu diễn phép hợp (union).",
+        },
+        {
+          text: "Otomat được cho bởi hình bên tương đương với BTCQ nào?",
+          image: "ẢnhNNHT/image010.png",
+          options: ["0+1", "(0+1)*", "0.1", "(0.1)*"],
+          correct: 1,
+          explanation:
+            "Otomat có một trạng thái vòng lặp với cả 0 và 1, nhận mọi xâu trên {0,1}, tương đương (0+1)*.",
+        },
+        {
+          text: "Cho Otomat không tiền định N₁ có hàm dịch chuyển... Xác định kết quả của dịch chuyển δ₁((0,1], a) = ?",
+          image: "ẢnhNNHT/image011.png",
+          options: ["{1,2}", "{0,1}", "{0,1,2}"],
+          correct: 2,
+          explanation:
+            "Dựa trên bảng dịch chuyển, từ tập trạng thái {0,1} với ký hiệu a, kết quả là {0,1,2}.",
+        },
+        {
+          text: "Xâu 00101 có được đoán nhận bởi ô tô mát sau không",
+          image: "ẢnhNNHT/image012.png",
+          options: ["Có", "Không"],
+          correct: 0,
+        },
+        {
+          text: "Biểu thức R₁₁² được khai triển theo công thức nào?",
+          options: [
+            "R₁₁¹ + R₁₁¹·(R₂₂¹)*·R₂₁¹",
+            "R₁₁¹ + R₁₂¹·(R₂₂¹)*·R₂₁¹",
+            "R₁₁⁰ + R₁₂⁰·(R₂₂⁰)*·R₂₂⁰",
+            "R₁₁¹ + R₁₂¹·(R₂₂¹)*·R₂₂¹",
+          ],
+          correct: 1,
+          explanation:
+            "Theo công thức Kleene: Rᵢⱼᵏ = Rᵢⱼᵏ⁻¹ + Rᵢₖᵏ⁻¹ (Rₖₖᵏ⁻¹)* Rₖⱼᵏ⁻¹. Với k=2, i=1, j=1, ta có R₁₁² = R₁₁¹ + R₁₂¹ (R₂₂¹)* R₂₁¹.",
+        },
+        {
+          text: "Nối các kí pháp và ý nghĩa tương ứng: S, Δ, Σ, P",
+          type: "matching",
+          pairs: [
+            { left: "S", right: "Kí hiệu đầu" },
+            { left: "Δ", right: "Bộ chữ không kết thúc" },
+            { left: "Σ", right: "Bộ chữ kết thúc" },
+            { left: "P", right: "Tập sản xuất" },
+          ],
+          explanation:
+            "Trong văn phạm, S là ký hiệu đầu, Δ là bộ chữ không kết thúc (non-terminal), Σ là bộ chữ kết thúc (terminal), P là tập sản xuất.",
+        },
+        {
+          text: "Nối các thuật ngữ và diễn giải tương ứng: F, δ, Q, Σ, q₀",
+          type: "matching",
+          pairs: [
+            { left: "F", right: "Tập trạng thái thừa nhận" },
+            { left: "δ", right: "Hàm dịch chuyển" },
+            { left: "Q", right: "Tập trạng thái hữu hạn" },
+            { left: "Σ", right: "Bộ chữ trên bảng" },
+            { left: "q₀", right: "Trạng thái đầu" },
+          ],
+          explanation:
+            "Trong otomat, F là tập trạng thái thừa nhận, δ là hàm dịch chuyển, Q là tập trạng thái hữu hạn, Σ là bộ chữ đầu vào, q₀ là trạng thái đầu.",
+        },
+        {
+          text: "Biểu thức R₁₂² được khai triển theo công thức nào?",
+          options: [
+            "R₁₂¹ + R₁₂¹·(R₂₂¹)*·R₂₁¹",
+            "R₁₂¹ + R₁₁¹·(R₂₂¹)*·R₂₁¹",
+            "R₁₂¹ + R₁₂¹·(R₂₂¹)*·R₂₂¹",
+            "R₁₂⁰ + R₁₂⁰·(R₂₂⁰)*·R₂₂⁰",
+          ],
+          correct: 2,
+          explanation:
+            "Áp dụng công thức Kleene: R₁₂² = R₁₂¹ + R₁₂¹ (R₂₂¹)* R₂₂¹.",
+        },
+        {
+          text: "Cho ngôn ngữ L = {a, ab}. Ngôn ngữ L² gồm các xâu nào?",
+          options: ["{aa, ab}", "{aa, aab, abab, aba}", "{ab, ba, aa, bb}"],
+          correct: 1,
+          explanation:
+            "L² = L·L = {a, ab} · {a, ab} = {aa, a·ab, ab·a, ab·ab} = {aa, aab, aba, abab}.",
+        },
+        {
+          text: "Biểu thức chính quy nào chỉ định ngôn ngữ L={aⁿbᵐ | m,n≥0}?",
+          options: ["(a.b)*", "a*+b*", "(a+b)*", "a*b*"],
+          correct: 3,
+          explanation:
+            "Ngôn ngữ gồm các xâu có a đứng trước b, số a và b bất kỳ, biểu diễn bằng a*b*.",
+        },
+        {
+          text: "Một ô tô mát hữu hạn có bao nhiêu trạng thái bắt đầu?",
+          options: [
+            "Có thể có một hoặc nhiều trạng thái thừa nhận",
+            "Chỉ có một trạng thái bắt đầu",
+            "Có thể không có trạng thái bắt đầu",
+          ],
+          correct: 1,
+          explanation:
+            "Otomat hữu hạn (tiền định hoặc không tiền định) luôn có một trạng thái bắt đầu duy nhất.",
+        },
+        {
+          text: "Để tìm một ô tô mát hữu hạn tiền định tương đương với một ô tô mát hữu hạn không tiền định cho trước, ta phải thực hiện theo thứ tự nào?",
+          type: "sequence",
+          items: [
+            {
+              id: "A",
+              text: "Loại bỏ tính chất không tiền định của hàm dịch chuyển",
+            },
+            { id: "B", text: "Loại bỏ dịch chuyển epsilon" },
+            { id: "C", text: "Đặt tên lại các trạng thái" },
+          ],
+          correctOrder: ["B", "A", "C"],
+          explanation:
+            "Thứ tự thực hiện: 1. Loại bỏ dịch chuyển epsilon, 2. Loại bỏ tính chất không tiền định của hàm dịch chuyển, 3. Đặt tên lại các trạng thái.",
+        },
+        {
+          text: "BTCQ ε chỉ định ngôn ngữ nào?",
+          options: ["∅", "{ε}", "ε"],
+          correct: 1,
+          explanation:
+            "Biểu thức chính quy ε biểu diễn ngôn ngữ chỉ chứa xâu rỗng {ε}.",
+        },
+        {
+          text: "Otomat M có sơ đồ dịch chuyển ở hình bên. Văn phạm tuyến tính phải G tương đương với Văn phạm G có tập sản xuất là:",
+          image: "ẢnhNNHT/image022.png",
+          options: [
+            "P = {p → 1p | 0q; q → 1p | 0r; r → 0r | 1r}",
+            "P = {p → 1p | 0q | ε; q → 1p | 0r | ε; r → 0r | 1r | ε}",
+            "P = {p → 1p | 0q; q → 1p | 0r; r → 0r | 1r | ε}",
+          ],
+          correct: 2,
+          explanation:
+            "Khi chuyển từ otomat sang văn phạm tuyến tính phải, mỗi cạnh chuyển từ trạng thái A sang B với nhãn x tạo ra sản xuất A → xB. Các trạng thái kết thúc (thừa nhận) có thêm sản xuất A → ε. Trong otomat này, chỉ có trạng thái r là trạng thái kết thúc, do đó chỉ r có sản xuất ε.",
+        },
+        {
+          text: "Otomat được cho bởi hình bên tương đương với BTCQ nào?",
+          image: "ẢnhNNHT/image023.png",
+          options: ["(0+1)*", "0+1", "0.1"],
+          correct: 0,
+          explanation:
+            "Otomat có một trạng thái duy nhất vừa là trạng thái đầu vừa là trạng thái kết thúc, với vòng lặp cho cả 0 và 1, do đó đoán nhận mọi xâu trên {0,1}, tương đương biểu thức chính quy (0+1)*.",
+        },
+        {
+          text: "Văn phạm sau có bộ chữ kết thúc là gì?",
+          image: "ẢnhNNHT/image024.png",
+          options: ["{a, b}", "{S, A, B}", "{a, b, ε}"],
+          correct: 0,
+          explanation:
+            "Bộ chữ kết thúc (terminal) là tập hợp các ký tự xuất hiện trong các xâu của ngôn ngữ, không bao gồm các ký tự không kết thúc (S, A, B) và không bao gồm ε (ký tự rỗng). Trong văn phạm đã cho, các ký tự kết thúc là a và b.",
+        },
+        {
+          text: "Văn phạm có các sản xuất dạng thuộc loại nào?",
+          image: "ẢnhNNHT/image025.png",
+          options: [
+            "Văn phạm cảm ngữ cảnh",
+            "Văn phạm tổng quát",
+            "Văn phạm phi ngữ cảnh",
+            "Văn phạm chính quy",
+          ],
+          correct: 2,
+          explanation:
+            "Sản xuất có vế trái là một ký hiệu không kết thúc, vế phải là chuỗi bất kỳ, đó là văn phạm phi ngữ cảnh.",
+        },
+        {
+          text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
+          image: "ẢnhNNHT/image026.png",
+          options: [
+            "{aⁿ bᵐ | n ≥ 0, m ≥ 0}",
+            "{aⁿ⁺¹ bⁿ | n ≥ 0}",
+            "{aⁿ⁺¹ bᵐ | n ≥ 1, m ≥ 0}",
+            "{aⁿ bᵐ | n ≥ 1, m ≥ 0}",
+          ],
+          correct: 3,
+          explanation:
+            "A sinh ra aⁿ với n≥1, B sinh ra bᵐ với m≥0, vậy ngôn ngữ {aⁿ bᵐ | n≥1, m≥0}.",
+        },
+        {
+          text: "Biểu thức chính quy nào chỉ định ngôn ngữ trên bộ chữ {0,1} và kết thúc bằng 111?",
+          options: ["(0+1)*111", "(0*+1)*111", "0*1*", "0*111"],
+          correct: 0,
+          explanation: "Mọi xâu kết thúc bằng 111 đều có dạng (0+1)*111.",
+        },
+        {
+          text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
+          image: "ẢnhNNHT/image028.png",
+          options: [
+            "{aⁿcᵐbⁿ | n ≥ 1, m ≥ 1}",
+            "{aⁿcᵐ⁺¹bⁿ | n ≥ 0, m ≥ 1}",
+            "{aⁿbⁿcᵐ | n ≥ 0, m ≥ 1}",
+            "{aⁿcᵐbⁿ | n ≥ 0, m ≥ 1}",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Cho Otomat M₁ và M₂ có sơ đồ dịch chuyển như hình bên. Thực hiện ghép tiếp Otomat M₂ với Otomat M₁ ta được Otomat nào?",
+          image: "ẢnhNNHT/image029.png",
+          options: [
+            "ẢnhNNHT/image030.png",
+            "ẢnhNNHT/image003.png",
+            "ẢnhNNHT/image004.png",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Otomat không tiền định M có tập trạng thái Q={{p,q,r}}. Để loại bỏ tính đa trị của hàm dịch chuyển thì tập trạng thái Q' được thiết lập như thế nào?",
+          options: [
+            "Q' = {p, q, r}",
+            "Q' = {{p,q}, {p,r}, {q,r}}",
+            "Q' = {{p}, {q}, {r}, {p,q}, {p,r}, {q,r}, {p,q,r}}",
+          ],
+          correct: 2,
+          explanation:
+            "Phương pháp xác định hóa otomat không tiền định: tập trạng thái mới là tập tất cả các tập con của tập trạng thái cũ.",
+        },
+        {
+          text: "Văn phạm sau thuộc loại gì?",
+          image: "ẢnhNNHT/image031.png",
+          options: [
+            "Văn phạm cảm ngữ cảnh",
+            "Văn phạm phi ngữ cảnh",
+            "Văn phạm chính quy",
+          ],
+          correct: 1,
+          explanation:
+            "Văn phạm sinh ra ngôn ngữ {aⁿbⁿ | n≥1} là phi ngữ cảnh, không chính quy.",
+        },
+        {
+          text: "Biểu thức chính quy (1+10)* biểu diễn ngôn ngữ nào?",
+          options: [
+            "Tập các xâu trên {0,1} bắt đầu bằng kí hiệu 1",
+            "Tập các xâu trên {0,1} bắt đầu bằng 1 và kết thúc bằng 0",
+            "Tập các xâu trên {0,1}",
+            "Tập các xâu trên {0,1} bắt đầu bằng 1 và không có hai 0 liên tiếp",
+          ],
+          correct: 0,
+          explanation:
+            "(1+10)* sinh ra các xâu ghép từ 1 và 10, do đó luôn bắt đầu bằng 1.",
+        },
+        {
+          text: "Cho Otomat hữu hạn có sơ đồ dịch chuyển như hình bên. R₃₃⁰ biểu diễn biểu thức chính quy nào?",
+          image: "ẢnhNNHT/image033.png",
+          options: ["0.1", "ε", "0 + 1 + ε"],
+          correct: 2,
+          explanation:
+            "R₃₃⁰ là các đường đi từ trạng thái 3 về 3 không qua trạng thái trung gian nào, gồm các vòng lặp 0, 1 và ε.",
+        },
+        {
+          text: "Cho Otomat có sơ đồ dịch chuyển như hình bên. Vì sao Otomat này là Otomat không tiền định?",
+          image: "ẢnhNNHT/image034.png",
+          options: [
+            "Có dịch chuyển ε",
+            "Có dịch chuyển ε và từ một trạng thái gặp 1 kí hiệu có thể chuyển sang được nhiều trạng thái khác",
+            "Từ 1 trạng thái gặp 1 kí hiệu có thể chuyển sang được nhiều trạng thái khác",
+          ],
+          correct: 0,
+          explanation:
+            "Sự tồn tại của dịch chuyển ε (dịch chuyển rỗng) làm cho otomat trở nên không tiền định.",
+        },
+        {
+          text: "Một ngôn ngữ chính quy có thể được đoán nhận bởi bao nhiêu Otomat hữu hạn?",
+          options: ["Chỉ hai Otomat", "Chỉ một Otomat", "Nhiều Otomat"],
+          correct: 2,
+          explanation:
+            "Một ngôn ngữ chính quy có vô số otomat hữu hạn khác nhau đoán nhận nó (sai khác về số trạng thái, cấu trúc).",
+        },
+        {
+          text: "Ngôn ngữ nào là ngôn ngữ chính quy?",
+          options: [
+            "{aⁿ b²ⁿ | n≥0}",
+            "{aⁿ bⁿ | n≥0}",
+            "{aⁿ bᵐ | n,m≥0}",
+            "{aⁿ bⁿ⁺¹ | n≥0}",
+          ],
+          correct: 2,
+          explanation:
+            "Ngôn ngữ {aⁿ bᵐ} là chính quy vì có thể biểu diễn bằng a*b*. Các ngôn ngữ còn lại yêu cầu số a bằng số b (hoặc quan hệ) nên không chính quy.",
+        },
+        {
+          text: "Ngôn ngữ {a}*.{b}*.{c}* gồm các xâu có đặc điểm gì?",
+          options: [
+            "Gồm các xâu trên {a,b,c} và số a bằng số b bằng số c",
+            "Gồm các xâu trên {a,b,c} và độ dài xâu là số chia hết cho 3",
+            "Gồm các xâu trên {a,b,c} và kí hiệu a đứng trước b, kí hiệu b đứng trước c",
+          ],
+          correct: 2,
+          explanation:
+            "Tích ghép {a}*{b}*{c}* cho các xâu có dạng a...a b...b c...c, tức a đứng trước b, b đứng trước c.",
+        },
+        {
+          text: "Biểu thức chính quy ab* chỉ định ngôn ngữ nào?",
+          options: [
+            "Ngôn ngữ gồm các xâu có 1 kí hiệu a đứng ở đầu",
+            "Ngôn ngữ gồm các xâu có kí hiệu a đứng trước kí hiệu b",
+            "Ngôn ngữ gồm 1 kí hiệu a và nhiều kí hiệu b",
+            "Ngôn ngữ gồm các xâu có 1 kí hiệu a ở đầu và toàn kí hiệu b phía sau",
+          ],
+          correct: 3,
+          explanation:
+            "ab* sinh ra xâu bắt đầu bằng a, sau đó là 0 hoặc nhiều b, tức 'a' ở đầu và toàn b phía sau.",
+        },
+        {
+          text: "Những ngôn ngữ nào KHÔNG là ngôn ngữ chính quy? (Chọn 2)",
+          options: [
+            "L={a^n b^{2n} | n>=0}",
+            "L={a^n b^{2m} | n,m>=0}",
+            "L={a^n b^m | n,m>=0}",
+            "L={a^n b^n | n>=0}",
+          ],
+          correct: [0, 3],
+          explanation:
+            "Ngôn ngữ {a^n b^{2n}} và {a^n b^n} đều yêu cầu số lượng a và b có quan hệ tuyến tính, không thể biểu diễn bằng biểu thức chính quy (bổ đề bơm). Các ngôn ngữ còn lại có dạng a* b* là chính quy.",
+        },
+        {
+          text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
+          image: "ẢnhNNHT/image040.png",
+          options: [
+            "{aⁿ cᵐ bⁿ | n ≥ 0, m ≥ 1}",
+            "{aⁿ bⁿ cᵐ | n ≥ 0, m ≥ 1}",
+            "{aⁿ cᵐ⁺¹ bⁿ | n ≥ 0, m ≥ 1}",
+            "{aⁿ bᵐ cⁿ | n ≥ 1, m ≥ 1}",
+          ],
+          correct: 0,
+          explanation:
+            "Tương tự câu image008, ngôn ngữ là aⁿ cᵐ bⁿ với n≥0, m≥1.",
+        },
+        {
+          text: "Văn phạm sau có bộ chữ kết thúc là gì?",
+          image: "ẢnhNNHT/image042.png",
+          options: ["{a, b}", "{S, A, B}", "{a, b, ε}"],
+          correct: 0,
+          explanation:
+            "Bộ chữ kết thúc (terminal) là các ký tự xuất hiện trong xâu cuối cùng, ở đây là a và b.",
+        },
+        {
+          text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
+          image: "ẢnhNNHT/image043.png",
+          options: [
+            "{aⁿ bᵐ | n ≥ 0, m ≥ 0}",
+            "{aⁿ⁺¹ bⁿ | n ≥ 0}",
+            "{aⁿ⁺¹ bᵐ | n ≥ 1, m ≥ 0}",
+            "{aⁿ bᵐ | n ≥ 1, m ≥ 0}",
+          ],
+          correct: 2,
+          explanation:
+            "Giống câu image026, A sinh ra aⁿ với n≥1, B sinh ra bᵐ với m≥0.",
+        },
+        {
+          text: "Cho Otomat có sơ đồ dịch chuyển như hình bên. Vì sao Otomat này là Otomat không tiền định?",
+          image: "ẢnhNNHT/image044.png",
+          options: [
+            "Có dịch chuyển ε",
+            "Có dịch chuyển ε và từ một trạng thái gặp 1 kí hiệu có thể chuyển sang được nhiều trạng thái khác",
+            "Từ 1 trạng thái gặp 1 kí hiệu có thể chuyển sang được nhiều trạng thái khác",
+          ],
+          correct: 1,
+          explanation:
+            "Otomat không tiền định do có chứa dịch chuyển ε (dịch chuyển rỗng), điều này làm cho từ một trạng thái có thể chuyển sang trạng thái khác mà không cần đọc ký hiệu đầu vào.",
+        },
+        {
+          text: "Văn phạm biểu diễn ngôn ngữ theo cơ chế nào?",
+          options: ["Cả sản sinh và đoán nhận", "Đoán nhận", "Sản sinh"],
+          correct: 2,
+          explanation:
+            "Văn phạm dùng để sinh ra các xâu của ngôn ngữ, cơ chế là sản sinh (generative).",
+        },
+        {
+          text: "Otomat được cho bởi hình bên tương đương với BTCQ nào?",
+          image: "ẢnhNNHT/image047.png",
+          options: ["a.b", "a*b*", "a.b*", "abb"],
+          correct: 2,
+          explanation:
+            "Otomat có đường đi: từ đầu đọc a đến trạng thái, sau đó vòng lặp b*, tương đương a.b*.",
+        },
+        {
+          text: "Cho văn phạm tuyến tính phải đơn G gồm các sản xuất: Otomat M tương đương với Văn phạm G có những trạng thái nào?",
+          image: "ẢnhNNHT/image048.png",
+          options: [
+            "Q={S,T} trong đó S là trạng thái đầu và T là trạng thái thừa nhận",
+            "Q={S,T,F} trong đó S là trạng thái đầu và F là trạng thái thừa nhận",
+            "Q={S,T} trong đó S là trạng thái đầu đồng thời là trạng thái thừa nhận",
+          ],
+          correct: 2,
+          explanation:
+            "Văn phạm tuyến tính phải đơn: S là ký hiệu đầu, T sinh ra ε nên T là trạng thái thừa nhận, nhưng do S cũng có thể dẫn xuất ra ε? Thực tế, otomat tương đương có trạng thái đầu S và trạng thái thừa nhận là S và T? Tuy nhiên đáp án đúng theo đề là S vừa là đầu vừa là thừa nhận.",
+        },
+
+        {
+          text: "Văn phạm sau có bộ chữ kết thúc là gì?",
+          image: "ẢnhNNHT/image043.png",
+          options: ["{a, b}", "{S, A, B}", "{a, b, ε}", "{ε}"],
+          correct: 0,
+        },
+        {
+          text: "Văn phạm G: S → aSb | Ac, A → Ac | ε sinh ra ngôn ngữ nào?",
+          options: [
+            "{aⁿ cᵐ bⁿ | n≥0, m≥1}",
+            "{aⁿ bⁿ cᵐ | n≥0, m≥1}",
+            "{aⁿ cᵐ⁺¹ bⁿ | n≥0, m≥1}",
+            "{aⁿ bᵐ cⁿ | n≥1, m≥1}",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Ngôn ngữ {a}*·{b}*·{c}* gồm các xâu có đặc điểm gì?",
+          options: [
+            "Số a = số b = số c",
+            "Độ dài chia hết cho 3",
+            "Ký tự a đứng trước b, b đứng trước c",
+            "Chỉ gồm toàn a hoặc toàn b",
+          ],
+          correct: 2,
+        },
+        {
+          text: "Văn phạm biểu diễn ngôn ngữ theo cơ chế nào?",
+          options: [
+            "Cả sản sinh và đoán nhận",
+            "Đoán nhận",
+            "Sản sinh",
+            "Phân tích cú pháp",
+          ],
+          correct: 2,
+        },
+        {
+          text: "Văn phạm S → aSb | ab thuộc loại nào?",
+          options: ["Cảm ngữ cảnh", "Phi ngữ cảnh", "Chính quy", "Tổng quát"],
+          correct: 1,
+        },
+        {
+          text: "Biểu thức chính quy (0+1)*111 chỉ định ngôn ngữ nào?",
+          options: [
+            "Các xâu kết thúc bằng 111",
+            "Các xâu bắt đầu bằng 111",
+            "Các xâu có 3 ký tự 1 liên tiếp",
+            "Các xâu chỉ gồm 0 và 1",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Biểu thức (1+10)* biểu diễn tập hợp nào trên {0,1}?",
+          options: [
+            "Xâu bắt đầu bằng 1",
+            "Xâu bắt đầu bằng 1 và kết thúc bằng 0",
+            "Mọi xâu trên {0,1}",
+            "Xâu bắt đầu bằng 1 và không có hai 0 liên tiếp",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Cho biểu thức R₃₃⁰ trong phương pháp loại trạng thái, kết quả là?",
+          options: ["0.1", "ε", "0+1+ε", "0*1*"],
+          correct: 2,
+        },
+        {
+          text: "Biểu thức chính quy ab* chỉ định ngôn ngữ nào?",
+          options: [
+            "Xâu có a đứng đầu và toàn b phía sau",
+            "Xâu có a và b xen kẽ",
+            "Xâu bắt đầu bằng a và kết thúc bằng b",
+            "Xâu chỉ gồm một a và nhiều b",
+          ],
+        },
+        {
+          text: "Ngôn ngữ nào KHÔNG là chính quy? (Chọn 2)",
+          options: [
+            "L={aⁿ b²ⁿ | n≥0}",
+            "L={aⁿ b²ᵐ | n,m≥0}",
+            "L={aⁿ bᵐ | n,m≥0}",
+            "L={aⁿ bⁿ | n≥0}",
+          ],
+          correct: [0, 3],
+        },
+        {
+          text: "Ngôn ngữ chính quy có thể được đoán nhận bởi bao nhiêu otomat hữu hạn?",
+          options: ["Chỉ một", "Chỉ hai", "Nhiều otomat", "Không có"],
+          correct: 2,
+        },
+        {
+          text: "Otomat không tiền định thường có đặc điểm gì?",
+          options: [
+            "Chỉ có dịch chuyển ε",
+            "Từ một trạng thái có thể có nhiều dịch chuyển cùng ký hiệu",
+            "Chỉ có một trạng thái bắt đầu",
+            "Hàm chuyển là hàm đơn trị",
+          ],
+          correct: 1,
+        },
+        {
+          text: "Để loại bỏ tính không tiền định của NFA, thứ tự các bước thường là:",
+          options: [
+            "1-Loại ε, 2-Đặt tên lại, 3-Xử lý đa trị",
+            "1-Xử lý đa trị, 2-Loại ε, 3-Đặt tên",
+            "1-Đặt tên, 2-Loại ε, 3-Đa trị",
+            "1-Loại ε, 2-Đa trị, 3-Đặt tên",
+          ],
+          correct: 3,
+        },
+        {
+          text: "Biểu thức chính quy ε chỉ định ngôn ngữ nào?",
+          options: ["∅", "{ε}", "ε", "{ }"],
+          correct: 1,
+        },
+        {
+          text: "Một DFA có bao nhiêu trạng thái bắt đầu?",
+          options: [
+            "Có thể có nhiều",
+            "Chỉ một",
+            "Có thể không có",
+            "Luôn có hai",
+          ],
+          correct: 1,
+        },
+        {
+          text: "Xâu được đoán nhận bởi DFA nếu:",
+          options: [
+            "Đọc hết xâu và kết thúc ở trạng thái thừa nhận",
+            "Đọc hết xâu",
+            "Kết thúc ở trạng thái bắt đầu",
+            "Dừng lại bất kỳ",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Hai văn phạm được gọi là tương đương nếu:",
+          options: [
+            "Cùng lớp văn phạm",
+            "Cùng bộ chữ kết thúc",
+            "Sinh cùng một ngôn ngữ",
+            "Có cùng số sản xuất",
+          ],
+          correct: 2,
+        },
+        {
+          text: "BTCQ A + B chỉ định ngôn ngữ nào?",
+          options: ["L(A) ∪ L(B)", "L(A) · L(B)", "L(A) + L(B)", "L(A) ∩ L(B)"],
+          correct: 0,
+        },
+        {
+          text: "Otomat cho bởi hình (hình có vòng lặp 0,1) tương đương BTCQ nào?",
+          options: ["0+1", "(0+1)*", "0·1", "1*"],
+          correct: 1,
+        },
+        {
+          text: "Văn phạm tuyến tính phải đơn: S → aS | bT, T → bT | ε. Otomat tương đương có tập trạng thái?",
+          options: [
+            "Q={S,T} với S đầu, T thừa nhận",
+            "Q={S,T,F} S đầu, F thừa nhận",
+            "Q={S,T} S vừa đầu vừa thừa nhận",
+            "Q={S,T} T là đầu",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Ngôn ngữ chính quy được đóng dưới phép nào?",
+          options: [
+            "Hợp, giao, bù, lặp",
+            "Chỉ hợp và nối",
+            "Chỉ lặp",
+            "Chỉ giao",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Otomat hữu hạn không tiền định (NFA) có thể chuyển thành DFA tương đương bằng phương pháp:",
+          options: [
+            "Lũy thừa tập trạng thái",
+            "Loại bỏ trạng thái thừa",
+            "Rút gọn",
+            "Thêm ε",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Văn phạm S → aSb | ε sinh ngôn ngữ gì?",
+          options: [
+            "{aⁿ bⁿ | n≥0}",
+            "{aⁿ bᵐ | n,m≥0}",
+            "{aⁿ bⁿ | n≥1}",
+            "{aⁿ bⁿ⁺¹}",
+          ],
+          correct: 0,
+        },
+        {
+          text: "Cho DFA có 3 trạng thái. Số lượng tập con tối đa khi chuyển NFA sang DFA là:",
+          options: ["3", "6", "8", "9"],
+          correct: 2,
+        },
+        {
+          text: "Biểu thức (ab)* chỉ định ngôn ngữ:",
+          options: ["{ab}ⁿ", "{aⁿ bⁿ}", "{a, b}", "{aᵏ bᵏ}"],
+          correct: 0,
+        },
+        {
+          text: "Ngôn ngữ L = {aⁿ bⁿ | n≥0} có tính chất:",
+          options: [
+            "Chính quy",
+            "Phi ngữ cảnh nhưng không chính quy",
+            "Cảm ngữ cảnh",
+            "Đệ quy",
+          ],
+          correct: 1,
+        },
+        {
+          text: "Để xây dựng BTCQ từ DFA, người ta thường dùng phương pháp:",
+          options: [
+            "Giải hệ phương trình",
+            "Loại trạng thái",
+            "Bổ đề bơm",
+            "Tối ưu hóa",
+          ],
+          correct: 1,
+        },
+        {
+          text: "Cho văn phạm S → aS | bT, T → aT | ε. Ngôn ngữ được sinh ra là:",
+          options: ["a* b a*", "a* b+ a*", "(a+b)*", "a* b a* + a*"],
+          correct: 0,
+        },
+        {
+          text: "Tập hợp nào dưới đây là chính quy?",
+          options: [
+            "{aⁿ bⁿ cⁿ}",
+            "{aⁿ bᵐ | n,m≥0}",
+            "{aⁿ bⁿ cᵐ}",
+            "{ww | w∈{0,1}*}",
+          ],
+          correct: 1,
+        },
+      ];
+
+      // Lấy bộ đề dựa trên dropdown dropdown
+      function getQuestionSet() {
+        const setVal = document.getElementById("questionSetSelect").value;
+        if (setVal === "1") return QUESTION_BANK.slice(0, 25);
+        if (setVal === "2") return QUESTION_BANK.slice(25, 50);
+        if (setVal === "3") return QUESTION_BANK.slice(50, 75);
+        return [...QUESTION_BANK]; // fallback "0" hoặc mặc định
+      }
+
+      // -------- PHẦN GIAO DIỆN VÀ LOGIC THI (GIỮ NGUYÊN CẤU TRÚC NHƯ INDEX.HTML) ----------
+      const themeSwitch = document.getElementById("themeSwitch");
+      if (localStorage.getItem("theme") === "dark")
+        document.body.classList.add("dark-mode");
+      themeSwitch.onclick = () => {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "theme",
+          document.body.classList.contains("dark-mode") ? "dark" : "light",
+        );
+      };
+
+      let currentQuestions = [],
+        userAnswers = [],
+        currentQuestionIndex = 0,
+        examStartTime,
+        timerInterval,
+        isExamFinished = false;
+      const TOTAL_TIME = 20 * 60; // 20 phút
+      const homePage = document.getElementById("homePage"),
+        examPage = document.getElementById("examPage");
+      const startExamBtn = document.getElementById("startExamBtn"),
+        backToHomeBtn = document.getElementById("backToHomeBtn");
+      const questionText = document.getElementById("questionText"),
+        optionsContainer = document.getElementById("optionsContainer");
+      const Area = document.getElementById("Area"),
+        prevBtn = document.getElementById("prevBtn"),
+        nextBtn = document.getElementById("nextBtn");
+      const submitBtnBottom = document.getElementById("submitBtnBottom"),
+        questionGrid = document.getElementById("questionGrid");
+      const answeredCounter = document.getElementById("answeredCounter"),
+        submitExamBtn = document.getElementById("submitExamBtn");
+      const timerDisplay = document.getElementById("timerDisplay"),
+        resultPanel = document.getElementById("resultPanel");
+      const goToHomeBtn = document.getElementById("goToHomeBtn"),
+        goToHistoryBtn = document.getElementById("goToHistoryBtn");
+      const questionSetSelect = document.getElementById("questionSetSelect");
+      const startTimeStrSpan = document.getElementById("startTimeStr"),
+        endTimeStrSpan = document.getElementById("endTimeStr");
+      const durationStrSpan = document.getElementById("durationStr"),
+        scoreDetailSpan = document.getElementById("scoreDetail");
+      const scorePercentSpan = document.getElementById("scorePercent");
+
+      function startExam() {
+        currentQuestions = getQuestionSet();
+        userAnswers = new Array(currentQuestions.length).fill(null);
+        currentQuestionIndex = 0;
+        isExamFinished = false;
+        examStartTime = new Date();
+        homePage.style.display = "none";
+        examPage.style.display = "block";
+        displayQuestion(0);
+        updateQuestionGrid();
+        startTimer();
+        resultPanel.style.display = "none";
+        submitExamBtn.style.display = "block";
+        submitBtnBottom.style.display = "none";
+      }
+
+      function displayQuestion(index) {
+        if (index < 0 || index >= currentQuestions.length) return;
+        currentQuestionIndex = index;
+        const q = currentQuestions[index];
+        const isMulti = Array.isArray(q.correct);
+        let html = `<div class="question-text">Câu ${index + 1}: ${q.text}</div>`;
+        if (q.image)
+          html += `<img src="${q.image}" style="max-width:100%; border-radius:8px; margin-bottom:16px;">`;
+        questionText.innerHTML = html;
+        optionsContainer.innerHTML = "";
+
+        if (q.type === "matching") {
+          if (!userAnswers[index]) userAnswers[index] = {};
+
+          // Get shuffled rights only once per question render (or static)
+          const allRights = q.pairs
+            .map((p) => p.right)
+            .sort((a, b) => a.localeCompare(b));
+
+          q.pairs.forEach((pair, i) => {
+            const rowDiv = document.createElement("div");
+            rowDiv.style.display = "flex";
+            rowDiv.style.alignItems = "center";
+            rowDiv.style.justifyContent = "space-between";
+            rowDiv.style.marginBottom = "10px";
+            rowDiv.style.padding = "10px";
+            rowDiv.style.border = "1px solid #ccc";
+            rowDiv.style.borderRadius = "4px";
+
+            const leftDiv = document.createElement("div");
+            leftDiv.style.fontWeight = "bold";
+            leftDiv.style.flex = "1";
+            leftDiv.textContent = pair.left;
+
+            const rightSelect = document.createElement("select");
+            rightSelect.style.flex = "2";
+            rightSelect.style.padding = "8px";
+            rightSelect.style.borderRadius = "4px";
+            rightSelect.style.border = "1px solid #ccc";
+            if (isExamFinished) rightSelect.disabled = true;
+
+            const defaultOpt = document.createElement("option");
+            defaultOpt.value = "";
+            defaultOpt.textContent = "-- Chọn ý nghĩa tương ứng --";
+            rightSelect.appendChild(defaultOpt);
+
+            allRights.forEach((r) => {
+              const opt = document.createElement("option");
+              opt.value = r;
+              opt.textContent = r;
+              rightSelect.appendChild(opt);
+            });
+
+            if (userAnswers[index][pair.left]) {
+              rightSelect.value = userAnswers[index][pair.left];
+            }
+
+            rightSelect.onchange = (e) => {
+              userAnswers[index][pair.left] = e.target.value;
+              updateQuestionGrid();
+            };
+
+            if (isExamFinished) {
+              const isAnsCorrect = userAnswers[index][pair.left] === pair.right;
+              rowDiv.style.backgroundColor = isAnsCorrect
+                ? "#d4edda"
+                : "#f8d7da";
+              if (!isAnsCorrect) {
+                const correctLabel = document.createElement("div");
+                correctLabel.style.color = "red";
+                correctLabel.style.fontSize = "0.9em";
+                correctLabel.style.marginTop = "5px";
+                correctLabel.textContent = `Đúng: ${pair.right}`;
+                leftDiv.appendChild(correctLabel);
+              }
+            }
+
+            rowDiv.appendChild(leftDiv);
+            rowDiv.appendChild(rightSelect);
+            optionsContainer.appendChild(rowDiv);
+          });
+        } else if (q.type === "sequence") {
+          // Khởi tạo mảng thứ tự nếu chưa chọn lần nào (đặt ngẫu nhiên hoặc theo thứ tự gốc)
+          if (!userAnswers[index]) {
+            userAnswers[index] = [...q.items.map((item) => item.id)];
+          }
+
+          userAnswers[index].forEach((id, i) => {
+            const itemObj = q.items.find((it) => it.id === id);
+            const rowDiv = document.createElement("div");
+            rowDiv.style.display = "flex";
+            rowDiv.style.alignItems = "center";
+            rowDiv.style.justifyContent = "space-between";
+            rowDiv.style.marginBottom = "5px";
+            rowDiv.style.padding = "10px";
+            rowDiv.style.border = "1px solid #ccc";
+            rowDiv.style.borderRadius = "4px";
+            rowDiv.style.backgroundColor = isExamFinished
+              ? id === q.correctOrder[i]
+                ? "#d4edda"
+                : "#f8d7da"
+              : "#fdfdfd";
+
+            const leftDiv = document.createElement("div");
+            leftDiv.style.display = "flex";
+            leftDiv.style.alignItems = "center";
+            leftDiv.style.flex = "1";
+
+            const idxSpan = document.createElement("span");
+            idxSpan.style.fontWeight = "bold";
+            idxSpan.style.marginRight = "10px";
+            idxSpan.style.color = "#007bff";
+            idxSpan.textContent = `Bước ${i + 1}.`;
+
+            const txtSpan = document.createElement("span");
+            txtSpan.style.color = "black";
+            txtSpan.textContent = itemObj.text;
+
+            leftDiv.appendChild(idxSpan);
+            leftDiv.appendChild(txtSpan);
+
+            rowDiv.appendChild(leftDiv);
+
+            if (!isExamFinished) {
+              rowDiv.draggable = true;
+              rowDiv.style.cursor = "grab";
+
+              rowDiv.ondragstart = (e) => {
+                e.dataTransfer.setData("text/plain", i);
+                rowDiv.style.opacity = "0.5";
+              };
+
+              rowDiv.ondragend = (e) => {
+                rowDiv.style.opacity = "1";
+              };
+
+              rowDiv.ondragover = (e) => {
+                e.preventDefault();
+                rowDiv.style.borderTop = "2px solid #007bff";
+              };
+
+              rowDiv.ondragleave = (e) => {
+                rowDiv.style.borderTop = "1px solid #ccc";
+              };
+
+              rowDiv.ondrop = (e) => {
+                e.preventDefault();
+                rowDiv.style.borderTop = "1px solid #ccc";
+                const draggedIndex = parseInt(
+                  e.dataTransfer.getData("text/plain"),
+                );
+                if (draggedIndex !== i) {
+                  const items = userAnswers[index];
+                  const [draggedItem] = items.splice(draggedIndex, 1);
+                  items.splice(i, 0, draggedItem);
+                  displayQuestion(index);
+                  updateQuestionGrid();
+                }
+              };
+            } else {
+              rowDiv.style.cursor = "default";
+            }
+
+            optionsContainer.appendChild(rowDiv);
+          });
+        } else {
+          q.options.forEach((opt, i) => {
+            const div = document.createElement("div");
+            div.className = "option-item";
+
+            let isSelected = false;
+            if (isMulti) {
+              isSelected = userAnswers[index] && userAnswers[index].includes(i);
+            } else {
+              isSelected = userAnswers[index] === i;
+            }
+            if (isSelected) div.classList.add("selected");
+
+            if (isExamFinished) {
+              let isCorrectOption = false;
+              if (isMulti) isCorrectOption = q.correct.includes(i);
+              else isCorrectOption = q.correct === i;
+
+              if (isCorrectOption) div.classList.add("correct-after");
+              else if (isSelected) div.classList.add("wrong-after");
+            }
+
+            const checkboxHtml = isMulti
+              ? `<input type="checkbox" ${isSelected ? "checked" : ""} style="margin-right: 10px; cursor: pointer; pointer-events: none;"> `
+              : "";
+            let optHtml = opt;
+            if (
+              typeof opt === "string" &&
+              opt.match(/^ẢnhNNHT\/.*\.(png|jpg|jpeg|gif)$/i)
+            ) {
+              optHtml = `<img src="${opt}" style="max-height:80px; max-width:100%; vertical-align:middle; border-radius:4px;">`;
+            }
+            div.innerHTML = `${checkboxHtml}<span class="option-prefix">${String.fromCharCode(65 + i)}.</span> ${optHtml}`;
+            if (!isExamFinished)
+              div.onclick = () => selectOption(index, i, isMulti);
+            optionsContainer.appendChild(div);
+          });
+        }
+        updateNavButtons();
+        updateQuestionGrid();
+        update();
+      }
+
+      function selectOption(qIdx, optIdx, isMulti) {
+        if (isExamFinished) return;
+        if (isMulti) {
+          if (!userAnswers[qIdx] || !Array.isArray(userAnswers[qIdx]))
+            userAnswers[qIdx] = [];
+          const idx = userAnswers[qIdx].indexOf(optIdx);
+          if (idx > -1) userAnswers[qIdx].splice(idx, 1);
+          else userAnswers[qIdx].push(optIdx);
+          if (userAnswers[qIdx].length === 0) userAnswers[qIdx] = null;
+        } else {
+          userAnswers[qIdx] = optIdx;
+        }
+        displayQuestion(qIdx);
+      }
+
+      function updateNavButtons() {
+        prevBtn.disabled = currentQuestionIndex === 0;
+        nextBtn.disabled = currentQuestionIndex === currentQuestions.length - 1;
+        submitBtnBottom.style.display =
+          currentQuestionIndex === currentQuestions.length - 1 &&
+          !isExamFinished
+            ? "block"
+            : "none";
+      }
+
+      function updateQuestionGrid() {
+        questionGrid.innerHTML = "";
+        for (let i = 0; i < currentQuestions.length; i++) {
+          const qDiv = document.createElement("div");
+          qDiv.className = "q-num";
+          qDiv.textContent = i + 1;
+          qDiv.onclick = () => displayQuestion(i);
+          if (i === currentQuestionIndex) qDiv.classList.add("current");
+
+          let hasAnswer = false;
+          if (currentQuestions[i].type === "matching") {
+            const ansObj = userAnswers[i] || {};
+            hasAnswer = currentQuestions[i].pairs.every(
+              (p) => ansObj[p.left] && ansObj[p.left] !== "",
+            );
+          } else if (currentQuestions[i].type === "sequence") {
+            hasAnswer =
+              userAnswers[i] &&
+              userAnswers[i].length === currentQuestions[i].items.length;
+          } else {
+            hasAnswer = userAnswers[i] !== null;
+          }
+
+          if (hasAnswer) {
+            if (!isExamFinished) qDiv.classList.add("selected");
+            else {
+              const q = currentQuestions[i];
+              if (q.type === "matching") {
+                const isCorrect = q.pairs.every(
+                  (p) => userAnswers[i][p.left] === p.right,
+                );
+                if (isCorrect) qDiv.classList.add("correct");
+                else qDiv.classList.add("wrong");
+              } else if (q.type === "sequence") {
+                const isCorrect = userAnswers[i].every(
+                  (ansId, idx) => ansId === q.correctOrder[idx],
+                );
+                if (isCorrect) qDiv.classList.add("correct");
+                else qDiv.classList.add("wrong");
+              } else if (Array.isArray(q.correct)) {
+                const isCorrect =
+                  Array.isArray(userAnswers[i]) &&
+                  userAnswers[i].length === q.correct.length &&
+                  userAnswers[i].every((val) => q.correct.includes(val));
+                if (isCorrect) qDiv.classList.add("correct");
+                else qDiv.classList.add("wrong");
+              } else {
+                if (userAnswers[i] === q.correct) qDiv.classList.add("correct");
+                else qDiv.classList.add("wrong");
+              }
+            }
+          }
+          questionGrid.appendChild(qDiv);
+        }
+
+        let answered = 0;
+        for (let i = 0; i < currentQuestions.length; i++) {
+          if (currentQuestions[i].type === "matching") {
+            const ansObj = userAnswers[i] || {};
+            if (
+              currentQuestions[i].pairs.every(
+                (p) => ansObj[p.left] && ansObj[p.left] !== "",
+              )
+            )
+              answered++;
+          } else if (currentQuestions[i].type === "sequence") {
+            if (
+              userAnswers[i] &&
+              userAnswers[i].length === currentQuestions[i].items.length
+            )
+              answered++;
+          } else if (userAnswers[i] !== null) {
+            answered++;
+          }
+        }
+        answeredCounter.textContent = `${answered}/${currentQuestions.length}`;
+      }
+
+      function update() {
+        Area.style.display = "none";
+        if (!isExamFinished) return;
+        const q = currentQuestions[currentQuestionIndex];
+        const ans = userAnswers[currentQuestionIndex];
+        if (ans !== null) {
+          Area.style.display = "block";
+
+          let isAnswerCorrect = false;
+          let correctStr = "";
+
+          if (q.type === "matching") {
+            isAnswerCorrect = q.pairs.every((p) => ans[p.left] === p.right);
+            correctStr = "Xem từng dòng ở trên để biết đáp án đúng";
+          } else if (q.type === "sequence") {
+            isAnswerCorrect = ans.every(
+              (id, idx) => id === q.correctOrder[idx],
+            );
+            correctStr = "Xem màu nền của từng dòng phía trên";
+          } else if (Array.isArray(q.correct)) {
+            isAnswerCorrect =
+              Array.isArray(ans) &&
+              ans.length === q.correct.length &&
+              ans.every((val) => q.correct.includes(val));
+            correctStr = q.correct
+              .map((idx) => String.fromCharCode(65 + idx))
+              .join(", ");
+          } else {
+            isAnswerCorrect = ans === q.correct;
+            correctStr = String.fromCharCode(65 + q.correct);
+          }
+
+          if (isAnswerCorrect) {
+            Area.className = "-area -correct";
+            Area.innerHTML = `<strong>✔ Đúng</strong> ${q.explanation || ""}`;
+          } else {
+            Area.className = "-area -wrong";
+            Area.innerHTML = `<strong>✘ Sai</strong> Đáp án đúng: ${correctStr}. ${q.explanation || ""}`;
+          }
+        }
+      }
+
+      function startTimer() {
+        let timeLeft = TOTAL_TIME;
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          const mm = Math.floor(timeLeft / 60),
+            ss = timeLeft % 60;
+          timerDisplay.textContent = `${mm.toString().padStart(2, "0")}:${ss.toString().padStart(2, "0")}`;
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            submitExam();
+          }
+        }, 1000);
+      }
+
+      function submitExam() {
+        if (!confirm("Nộp bài ngay?")) return;
+        clearInterval(timerInterval);
+        isExamFinished = true;
+        let correctCount = 0;
+        for (let i = 0; i < currentQuestions.length; i++) {
+          const q = currentQuestions[i];
+          if (q.type === "matching") {
+            if (
+              userAnswers[i] &&
+              q.pairs.every((p) => userAnswers[i][p.left] === p.right)
+            )
+              correctCount++;
+          } else if (q.type === "sequence") {
+            if (
+              userAnswers[i] &&
+              userAnswers[i].every((id, idx) => id === q.correctOrder[idx])
+            )
+              correctCount++;
+          } else if (Array.isArray(q.correct)) {
+            if (
+              Array.isArray(userAnswers[i]) &&
+              userAnswers[i].length === q.correct.length &&
+              userAnswers[i].every((val) => q.correct.includes(val))
+            ) {
+              correctCount++;
+            }
+          } else {
+            if (userAnswers[i] === q.correct) correctCount++;
+          }
+        }
+        const score = (correctCount / currentQuestions.length) * 100;
+        const endTime = new Date();
+        const durationSec = Math.round((endTime - examStartTime) / 1000);
+        const durationStr = `${Math.floor(durationSec / 60)} phút ${durationSec % 60} giây`;
+        const historyItem = {
+          id: Date.now(),
+          startTimeStr: examStartTime.toLocaleString(),
+          endTimeStr: endTime.toLocaleString(),
+          durationStr: durationStr,
+          correctCount,
+          totalCount: currentQuestions.length,
+          score,
+          userAnswers: [...userAnswers],
+        };
+        const history = JSON.parse(
+          localStorage.getItem("flatExamHistory") || "[]",
+        );
+        history.push(historyItem);
+        localStorage.setItem("flatExamHistory", JSON.stringify(history));
+        startTimeStrSpan.textContent = historyItem.startTimeStr;
+        endTimeStrSpan.textContent = historyItem.endTimeStr;
+        durationStrSpan.textContent = historyItem.durationStr;
+        scoreDetailSpan.textContent = `${correctCount}/${currentQuestions.length}`;
+        scorePercentSpan.textContent = `${score.toFixed(2)}/100.00`;
+        resultPanel.style.display = "block";
+        submitExamBtn.style.display = "none";
+        submitBtnBottom.style.display = "none";
+        displayQuestion(currentQuestionIndex);
+        loadHistorySummary();
+      }
+
+      function goHome() {
+        if (!isExamFinished && !confirm("Thoát sẽ mất tiến độ. Tiếp tục?"))
+          return;
+        clearInterval(timerInterval);
+        homePage.style.display = "block";
+        examPage.style.display = "none";
+        document.querySelector('.tab-btn[data-tab="new-exam"]').click();
+      }
+
+      function goHistory() {
+        if (!isExamFinished && !confirm("Thoát về lịch sử?")) return;
+        clearInterval(timerInterval);
+        homePage.style.display = "block";
+        examPage.style.display = "none";
+        document.querySelector('.tab-btn[data-tab="history-summary"]').click();
+        loadHistorySummary();
+      }
+
+      function loadHistorySummary() {
+        const history = JSON.parse(
+          localStorage.getItem("flatExamHistory") || "[]",
+        );
+        const tbody = document.getElementById("historySummaryBody");
+        tbody.innerHTML = "";
+        if (history.length === 0) {
+          tbody.innerHTML =
+            "<tr><td colspan='4' style='text-align:center'>Chưa có lịch sử</td></tr>";
+          return;
+        }
+        history
+          .slice()
+          .reverse()
+          .forEach((item, idx) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>Lần ${history.length - idx}</td><td>Đã kết thúc<br><span style="font-size:0.7rem">${item.endTimeStr}</span></td><td>${item.score.toFixed(2)}</td><td><a class="review-link" data-id="${item.id}" href="#">Xem lại</a></td>`;
+            tbody.appendChild(tr);
+          });
+        document.querySelectorAll(".review-link").forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const id = parseInt(link.getAttribute("data-id"));
+            reviewExam(id);
+          });
+        });
+      }
+
+      function reviewExam(id) {
+        const history = JSON.parse(
+          localStorage.getItem("flatExamHistory") || "[]",
+        );
+        const item = history.find((i) => i.id === id);
+        if (!item) return;
+        clearInterval(timerInterval);
+        currentQuestions = getQuestionSet();
+        userAnswers =
+          item.userAnswers || new Array(currentQuestions.length).fill(null);
+        isExamFinished = true;
+        examStartTime = new Date(item.startTimeStr);
+        homePage.style.display = "none";
+        examPage.style.display = "block";
+        resultPanel.style.display = "block";
+        startTimeStrSpan.textContent = item.startTimeStr;
+        endTimeStrSpan.textContent = item.endTimeStr;
+        durationStrSpan.textContent = item.durationStr;
+        scoreDetailSpan.textContent = `${item.correctCount}/${item.totalCount}`;
+        scorePercentSpan.textContent = `${item.score.toFixed(2)}/100.00`;
+        submitExamBtn.style.display = "none";
+        submitBtnBottom.style.display = "none";
+        displayQuestion(0);
+        updateQuestionGrid();
+      }
+
+      startExamBtn.onclick = startExam;
+      backToHomeBtn.onclick = goHome;
+      prevBtn.onclick = () => displayQuestion(currentQuestionIndex - 1);
+      nextBtn.onclick = () => displayQuestion(currentQuestionIndex + 1);
+
+      document.addEventListener("keydown", (e) => {
+        if (examPage.style.display === "block") {
+          if (e.key === "ArrowLeft") {
+            displayQuestion(currentQuestionIndex - 1);
+          } else if (e.key === "ArrowRight") {
+            displayQuestion(currentQuestionIndex + 1);
+          }
+        }
+      });
+
+      submitExamBtn.onclick = submitExam;
+      submitBtnBottom.onclick = submitExam;
+      goToHomeBtn.onclick = goHome;
+      goToHistoryBtn.onclick = goHistory;
+
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.onclick = () => {
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          document
+            .querySelectorAll(".tab-content")
+            .forEach((c) => c.classList.remove("active"));
+          document
+            .getElementById(btn.getAttribute("data-tab") + "Tab")
+            .classList.add("active");
+          if (btn.getAttribute("data-tab") === "history-summary")
+            loadHistorySummary();
+        };
+      });
+      loadHistorySummary();
+    </script>
+  </body>
+</html>
