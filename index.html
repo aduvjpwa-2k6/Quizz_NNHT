@@ -651,8 +651,6 @@
             "Không có quy ước đặt tên trạng thái",
           ],
           correct: 0,
-          explanation:
-            "Khi xây dựng biểu thức chính quy từ otomat, cần đặt tên trạng thái theo thứ tự q1, q2, ..., qn với q1 là trạng thái đầu để áp dụng công thức Kleene.",
         },
         {
           text: "Hai văn phạm được gọi là tương đương nếu",
@@ -662,8 +660,6 @@
             "Sản sinh ra cùng một ngôn ngữ",
           ],
           correct: 2,
-          explanation:
-            "Hai văn phạm tương đương khi chúng sinh ra cùng một ngôn ngữ.",
         },
         {
           text: "Cho Otomat có sơ đồ dịch chuyển như hình. E(q2) = ?",
@@ -692,8 +688,6 @@
           image: "ẢnhNNHT/image007.png",
           options: ["0+1", "(0+1)*", "0.1", "1*"],
           correct: 3,
-          explanation:
-            "Hình vẽ cho thấy otomat chỉ có vòng lặp trên ký hiệu 1, tương đương với biểu thức chính quy 1*.",
         },
         {
           text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
@@ -705,31 +699,23 @@
             "{aⁿ bᵐ cⁿ | n ≥ 1, m ≥ 1}",
           ],
           correct: 0,
-          explanation:
-            "S sinh ra aⁿ S bⁿ, cuối cùng S → Ac, A sinh ra cᵐ (m≥0), tổng cộng có aⁿ cᵐ⁺¹ bⁿ nhưng nếu đặt lại m' = m+1 thì m'≥1, dạng aⁿ cᵐ bⁿ với m≥1.",
         },
         {
           text: "BTCQ A+B chỉ định ngôn ngữ nào?",
           options: ["L(A) ∪ L(B)", "L(A).L(B)", "L(A) + L(B)"],
           correct: 0,
-          explanation:
-            "Phép + trong biểu thức chính quy biểu diễn phép hợp (union).",
         },
         {
           text: "Otomat được cho bởi hình bên tương đương với BTCQ nào?",
           image: "ẢnhNNHT/image010.png",
           options: ["0+1", "(0+1)*", "0.1", "(0.1)*"],
           correct: 1,
-          explanation:
-            "Otomat có một trạng thái vòng lặp với cả 0 và 1, nhận mọi xâu trên {0,1}, tương đương (0+1)*.",
         },
         {
           text: "Cho Otomat không tiền định N₁ có hàm dịch chuyển... Xác định kết quả của dịch chuyển δ₁((0,1], a) = ?",
           image: "ẢnhNNHT/image011.png",
           options: ["{1,2}", "{0,1}", "{0,1,2}"],
           correct: 2,
-          explanation:
-            "Dựa trên bảng dịch chuyển, từ tập trạng thái {0,1} với ký hiệu a, kết quả là {0,1,2}.",
         },
         {
           text: "Xâu 00101 có được đoán nhận bởi ô tô mát sau không",
@@ -746,8 +732,6 @@
             "R₁₁¹ + R₁₂¹·(R₂₂¹)*·R₂₂¹",
           ],
           correct: 1,
-          explanation:
-            "Theo công thức Kleene: Rᵢⱼᵏ = Rᵢⱼᵏ⁻¹ + Rᵢₖᵏ⁻¹ (Rₖₖᵏ⁻¹)* Rₖⱼᵏ⁻¹. Với k=2, i=1, j=1, ta có R₁₁² = R₁₁¹ + R₁₂¹ (R₂₂¹)* R₂₁¹.",
         },
         {
           text: "Nối các kí pháp và ý nghĩa tương ứng: S, Δ, Σ, P",
@@ -758,8 +742,6 @@
             { left: "Σ", right: "Bộ chữ kết thúc" },
             { left: "P", right: "Tập sản xuất" },
           ],
-          explanation:
-            "Trong văn phạm, S là ký hiệu đầu, Δ là bộ chữ không kết thúc (non-terminal), Σ là bộ chữ kết thúc (terminal), P là tập sản xuất.",
         },
         {
           text: "Nối các thuật ngữ và diễn giải tương ứng: F, δ, Q, Σ, q₀",
@@ -771,8 +753,6 @@
             { left: "Σ", right: "Bộ chữ trên bảng" },
             { left: "q₀", right: "Trạng thái đầu" },
           ],
-          explanation:
-            "Trong otomat, F là tập trạng thái thừa nhận, δ là hàm dịch chuyển, Q là tập trạng thái hữu hạn, Σ là bộ chữ đầu vào, q₀ là trạng thái đầu.",
         },
         {
           text: "Biểu thức R₁₂² được khai triển theo công thức nào?",
@@ -783,22 +763,16 @@
             "R₁₂⁰ + R₁₂⁰·(R₂₂⁰)*·R₂₂⁰",
           ],
           correct: 2,
-          explanation:
-            "Áp dụng công thức Kleene: R₁₂² = R₁₂¹ + R₁₂¹ (R₂₂¹)* R₂₂¹.",
         },
         {
           text: "Cho ngôn ngữ L = {a, ab}. Ngôn ngữ L² gồm các xâu nào?",
           options: ["{aa, ab}", "{aa, aab, abab, aba}", "{ab, ba, aa, bb}"],
           correct: 1,
-          explanation:
-            "L² = L·L = {a, ab} · {a, ab} = {aa, a·ab, ab·a, ab·ab} = {aa, aab, aba, abab}.",
         },
         {
           text: "Biểu thức chính quy nào chỉ định ngôn ngữ L={aⁿbᵐ | m,n≥0}?",
           options: ["(a.b)*", "a*+b*", "(a+b)*", "a*b*"],
           correct: 3,
-          explanation:
-            "Ngôn ngữ gồm các xâu có a đứng trước b, số a và b bất kỳ, biểu diễn bằng a*b*.",
         },
         {
           text: "Một ô tô mát hữu hạn có bao nhiêu trạng thái bắt đầu?",
@@ -808,8 +782,6 @@
             "Có thể không có trạng thái bắt đầu",
           ],
           correct: 1,
-          explanation:
-            "Otomat hữu hạn (tiền định hoặc không tiền định) luôn có một trạng thái bắt đầu duy nhất.",
         },
         {
           text: "Để tìm một ô tô mát hữu hạn tiền định tương đương với một ô tô mát hữu hạn không tiền định cho trước, ta phải thực hiện theo thứ tự nào?",
@@ -823,15 +795,11 @@
             { id: "C", text: "Đặt tên lại các trạng thái" },
           ],
           correctOrder: ["B", "A", "C"],
-          explanation:
-            "Thứ tự thực hiện: 1. Loại bỏ dịch chuyển epsilon, 2. Loại bỏ tính chất không tiền định của hàm dịch chuyển, 3. Đặt tên lại các trạng thái.",
         },
         {
           text: "BTCQ ε chỉ định ngôn ngữ nào?",
           options: ["∅", "{ε}", "ε"],
           correct: 1,
-          explanation:
-            "Biểu thức chính quy ε biểu diễn ngôn ngữ chỉ chứa xâu rỗng {ε}.",
         },
         {
           text: "Otomat M có sơ đồ dịch chuyển ở hình bên. Văn phạm tuyến tính phải G tương đương với Văn phạm G có tập sản xuất là:",
@@ -842,24 +810,18 @@
             "P = {p → 1p | 0q; q → 1p | 0r; r → 0r | 1r | ε}",
           ],
           correct: 2,
-          explanation:
-            "Khi chuyển từ otomat sang văn phạm tuyến tính phải, mỗi cạnh chuyển từ trạng thái A sang B với nhãn x tạo ra sản xuất A → xB. Các trạng thái kết thúc (thừa nhận) có thêm sản xuất A → ε. Trong otomat này, chỉ có trạng thái r là trạng thái kết thúc, do đó chỉ r có sản xuất ε.",
         },
         {
           text: "Otomat được cho bởi hình bên tương đương với BTCQ nào?",
           image: "ẢnhNNHT/image023.png",
           options: ["(0+1)*", "0+1", "0.1"],
           correct: 1,
-          explanation:
-            "Otomat có một trạng thái duy nhất vừa là trạng thái đầu vừa là trạng thái kết thúc, với vòng lặp cho cả 0 và 1, do đó đoán nhận mọi xâu trên {0,1}, tương đương biểu thức chính quy (0+1)*.",
         },
         {
           text: "Văn phạm sau có bộ chữ kết thúc là gì?",
           image: "ẢnhNNHT/image024.png",
           options: ["{a, b}", "{S, A, B}", "{a, b, ε}"],
           correct: 0,
-          explanation:
-            "Bộ chữ kết thúc (terminal) là tập hợp các ký tự xuất hiện trong các xâu của ngôn ngữ, không bao gồm các ký tự không kết thúc (S, A, B) và không bao gồm ε (ký tự rỗng). Trong văn phạm đã cho, các ký tự kết thúc là a và b.",
         },
         {
           text: "Văn phạm có các sản xuất dạng thuộc loại nào?",
@@ -871,8 +833,6 @@
             "Văn phạm chính quy",
           ],
           correct: 2,
-          explanation:
-            "Sản xuất có vế trái là một ký hiệu không kết thúc, vế phải là chuỗi bất kỳ, đó là văn phạm phi ngữ cảnh.",
         },
         {
           text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
@@ -884,14 +844,11 @@
             "{aⁿ bᵐ | n ≥ 1, m ≥ 0}",
           ],
           correct: 3,
-          explanation:
-            "A sinh ra aⁿ với n≥1, B sinh ra bᵐ với m≥0, vậy ngôn ngữ {aⁿ bᵐ | n≥1, m≥0}.",
         },
         {
           text: "Biểu thức chính quy nào chỉ định ngôn ngữ trên bộ chữ {0,1} và kết thúc bằng 111?",
           options: ["(0+1)*111", "(0*+1)*111", "0*1*", "0*111"],
           correct: 0,
-          explanation: "Mọi xâu kết thúc bằng 111 đều có dạng (0+1)*111.",
         },
         {
           text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
@@ -922,8 +879,6 @@
             "Q' = {{p}, {q}, {r}, {p,q}, {p,r}, {q,r}, {p,q,r}}",
           ],
           correct: 2,
-          explanation:
-            "Phương pháp xác định hóa otomat không tiền định: tập trạng thái mới là tập tất cả các tập con của tập trạng thái cũ.",
         },
         {
           text: "Văn phạm sau thuộc loại gì?",
@@ -934,8 +889,6 @@
             "Văn phạm chính quy",
           ],
           correct: 1,
-          explanation:
-            "Văn phạm sinh ra ngôn ngữ {aⁿbⁿ | n≥1} là phi ngữ cảnh, không chính quy.",
         },
         {
           text: "Biểu thức chính quy (1+10)* biểu diễn ngôn ngữ nào?",
@@ -946,16 +899,12 @@
             "Tập các xâu trên {0,1} bắt đầu bằng 1 và không có hai 0 liên tiếp",
           ],
           correct: 0,
-          explanation:
-            "(1+10)* sinh ra các xâu ghép từ 1 và 10, do đó luôn bắt đầu bằng 1.",
         },
         {
           text: "Cho Otomat hữu hạn có sơ đồ dịch chuyển như hình bên. R₃₃⁰ biểu diễn biểu thức chính quy nào?",
           image: "ẢnhNNHT/image033.png",
           options: ["0.1", "ε", "0 + 1 + ε"],
           correct: 2,
-          explanation:
-            "R₃₃⁰ là các đường đi từ trạng thái 3 về 3 không qua trạng thái trung gian nào, gồm các vòng lặp 0, 1 và ε.",
         },
         {
           text: "Cho Otomat có sơ đồ dịch chuyển như hình bên. Vì sao Otomat này là Otomat không tiền định?",
@@ -971,8 +920,6 @@
           text: "Một ngôn ngữ chính quy có thể được đoán nhận bởi bao nhiêu Otomat hữu hạn?",
           options: ["Chỉ hai Otomat", "Chỉ một Otomat", "Nhiều Otomat"],
           correct: 2,
-          explanation:
-            "Một ngôn ngữ chính quy có vô số otomat hữu hạn khác nhau đoán nhận nó (sai khác về số trạng thái, cấu trúc).",
         },
         {
           text: "Ngôn ngữ nào là ngôn ngữ chính quy?",
@@ -983,8 +930,6 @@
             "{aⁿ bⁿ⁺¹ | n≥0}",
           ],
           correct: 2,
-          explanation:
-            "Ngôn ngữ {aⁿ bᵐ} là chính quy vì có thể biểu diễn bằng a*b*. Các ngôn ngữ còn lại yêu cầu số a bằng số b (hoặc quan hệ) nên không chính quy.",
         },
         {
           text: "Ngôn ngữ {a}*.{b}*.{c}* gồm các xâu có đặc điểm gì?",
@@ -994,8 +939,6 @@
             "Gồm các xâu trên {a,b,c} và kí hiệu a đứng trước b, kí hiệu b đứng trước c",
           ],
           correct: 2,
-          explanation:
-            "Tích ghép {a}*{b}*{c}* cho các xâu có dạng a...a b...b c...c, tức a đứng trước b, b đứng trước c.",
         },
         {
           text: "Biểu thức chính quy ab* chỉ định ngôn ngữ nào?",
@@ -1006,8 +949,6 @@
             "Ngôn ngữ gồm các xâu có 1 kí hiệu a ở đầu và toàn kí hiệu b phía sau",
           ],
           correct: 3,
-          explanation:
-            "ab* sinh ra xâu bắt đầu bằng a, sau đó là 0 hoặc nhiều b, tức 'a' ở đầu và toàn b phía sau.",
         },
         {
           text: "Những ngôn ngữ nào KHÔNG là ngôn ngữ chính quy? (Chọn 2)",
@@ -1018,8 +959,6 @@
             "L={a^n b^n | n>=0}",
           ],
           correct: [0, 3],
-          explanation:
-            "Ngôn ngữ {a^n b^{2n}} và {a^n b^n} đều yêu cầu số lượng a và b có quan hệ tuyến tính, không thể biểu diễn bằng biểu thức chính quy (bổ đề bơm). Các ngôn ngữ còn lại có dạng a* b* là chính quy.",
         },
         {
           text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
@@ -1031,16 +970,12 @@
             "{aⁿbᵐcⁿ | n ≥ 1, m ≥ 1}",
           ],
           correct: 0,
-          explanation:
-            "Tương tự câu image008, ngôn ngữ là aⁿ cᵐ bⁿ với n≥0, m≥1.",
         },
         {
           text: "Văn phạm sau có bộ chữ kết thúc là gì?",
           image: "ẢnhNNHT/image042.png",
           options: ["{a, b}", "{S, A, B}", "{a, b, ε}"],
           correct: 0,
-          explanation:
-            "Bộ chữ kết thúc (terminal) là các ký tự xuất hiện trong xâu cuối cùng, ở đây là a và b.",
         },
         {
           text: "Văn phạm G gồm các sản xuất sau sinh ra ngôn ngữ nào?",
@@ -1052,8 +987,6 @@
             "{aⁿ bᵐ | n ≥ 1, m ≥ 0}",
           ],
           correct: 3,
-          explanation:
-            "Giống câu image026, A sinh ra aⁿ với n≥1, B sinh ra bᵐ với m≥0.",
         },
         {
           text: "Cho Otomat có sơ đồ dịch chuyển như hình bên. Vì sao Otomat này là Otomat không tiền định?",
@@ -1064,23 +997,17 @@
             "Từ 1 trạng thái gặp 1 kí hiệu có thể chuyển sang được nhiều trạng thái khác",
           ],
           correct: 1,
-          explanation:
-            "Otomat không tiền định do có chứa dịch chuyển ε (dịch chuyển rỗng), điều này làm cho từ một trạng thái có thể chuyển sang trạng thái khác mà không cần đọc ký hiệu đầu vào.",
         },
         {
           text: "Văn phạm biểu diễn ngôn ngữ theo cơ chế nào?",
           options: ["Cả sản sinh và đoán nhận", "Đoán nhận", "Sản sinh"],
           correct: 2,
-          explanation:
-            "Văn phạm dùng để sinh ra các xâu của ngôn ngữ, cơ chế là sản sinh (generative).",
         },
         {
           text: "Otomat được cho bởi hình bên tương đương với BTCQ nào?",
           image: "ẢnhNNHT/image047.png",
           options: ["a.b", "a*b*", "a.b*", "abb"],
           correct: 2,
-          explanation:
-            "Otomat có đường đi: từ đầu đọc a đến trạng thái, sau đó vòng lặp b*, tương đương a.b*.",
         },
         {
           text: "Cho văn phạm tuyến tính phải đơn G gồm các sản xuất: Otomat M tương đương với Văn phạm G có những trạng thái nào?",
@@ -1091,10 +1018,7 @@
             "Q={S,T} trong đó S là trạng thái đầu đồng thời là trạng thái thừa nhận",
           ],
           correct: 2,
-          explanation:
-            "Văn phạm tuyến tính phải đơn: S là ký hiệu đầu, T sinh ra ε nên T là trạng thái thừa nhận, nhưng do S cũng có thể dẫn xuất ra ε? Thực tế, otomat tương đương có trạng thái đầu S và trạng thái thừa nhận là S và T? Tuy nhiên đáp án đúng theo đề là S vừa là đầu vừa là thừa nhận.",
         },
-
         {
           text: "Văn phạm sau có bộ chữ kết thúc là gì?",
           image: "ẢnhNNHT/image043.png",
