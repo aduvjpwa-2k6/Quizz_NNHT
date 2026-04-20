@@ -1799,7 +1799,7 @@
           .reverse()
           .forEach((item, idx) => {
             const tr = document.createElement("tr");
-            tr.innerHTML = `<td>Lần ${history.length - idx}</td><td>Đã kết thúc<br><span style="font-size:0.7rem">${item.endTimeStr}</span></td><td>${item.score.toFixed(2)}</td><td><a class="review-link" data-id="${item.id}" href="#">Xem lại</a></td>`;
+            tr.innerHTML = `<td>Lần ${history.length - idx}</td><td><span style="color: #28a745; font-weight: 500;">Đã kết thúc</span><br><span style="font-size:0.7rem">${item.endTimeStr}</span></td><td>${item.score.toFixed(2)}</td><td><a class="review-link" data-id="${item.id}" href="#">Xem lại</a></td>`;
             tbody.appendChild(tr);
           });
         document.querySelectorAll(".review-link").forEach((link) => {
